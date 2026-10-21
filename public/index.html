@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light Browser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="browser-container">
+    <!-- Top Chrome / Navigation Bar -->
+    <header class="browser-header">
+      <div class="nav-controls">
+        <button id="btn-back" class="nav-btn" title="Back" disabled>‹</button>
+        <button id="btn-forward" class="nav-btn" title="Forward" disabled>›</button>
+        <button id="btn-reload" class="nav-btn" title="Reload">↻</button>
+        <button id="btn-home" class="nav-btn" title="Home">⌂</button>
+      </div>
+
+      <form id="url-form" class="omnibox-form">
+        <div class="omnibox-wrapper">
+          <span class="security-badge">🔒</span>
+          <input 
+            type="text" 
+            id="url-input" 
+            class="omnibox-input" 
+            placeholder="Search or enter website address (e.g. news.ycombinator.com)..."
+            spellcheck="false"
+            autocomplete="off"
+          />
+          <button type="button" id="btn-bookmark-toggle" class="omnibox-action-btn" title="Bookmark this page (Ctrl+D)">☆</button>
+        </div>
+      </form>
+
+      <div class="header-actions">
+        <button id="btn-bookmarks-menu" class="nav-btn" title="All Bookmarks">🔖</button>
+      </div>
+    </header>
+
+    <!-- Quick Bookmarks Bar -->
+    <nav id="bookmarks-bar" class="bookmarks-bar">
+      <!-- Injected dynamically via JS -->
+    </nav>
+
+    <!-- Main Viewport -->
+    <main class="browser-viewport-wrapper">
+      <!-- Start Page -->
+      <div id="start-page" class="start-page">
+        <div class="start-content">
+          <div class="start-logo">🌐</div>
+          <h1 class="start-title">Light Browser</h1>
+          <p class="start-subtitle">Fast, distraction-free web browsing with built-in bookmark management.</p>
+          
+          <form id="start-search-form" class="start-search-box">
+            <input 
+              type="text" 
+              id="start-search-input" 
+              placeholder="Search or enter a URL..." 
+              autocomplete="off"
+            />
+            <button type="submit" class="start-search-btn">Go</button>
+          </form>
+
+          <div class="quick-links-section">
+            <h3>Quick Launch</h3>
+            <div id="quick-links" class="quick-links-grid">
+              <button class="quick-chip" data-url="https://news.ycombinator.com">Hacker News</button>
+              <button class="quick-chip" data-url="https://en.wikipedia.org">Wikipedia</button>
+              <button class="quick-chip" data-url="https://lite.duckduckgo.com/lite/">DuckDuckGo Lite</button>
+              <button class="quick-chip" data-url="https://w3schools.com">W3Schools</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Iframe viewport -->
+      <iframe 
+        id="browser-viewport" 
+        class="browser-viewport hidden" 
+        sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+      ></iframe>
+    </main>
+
+    <!-- Bookmarks Manager Modal -->
+    <div id="bookmarks-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>Bookmarks Manager</h2>
+          <button id="btn-close-modal" class="close-btn">×</button>
+        </div>
+        <div class="modal-toolbar">
+          <input type="text" id="bookmark-search" placeholder="Filter bookmarks..." class="filter-input">
+          <div class="modal-btn-group">
+            <button id="btn-export-bookmarks" class="action-btn">Export JSON</button>
+            <label class="action-btn upload-label">
+              Import JSON
+              <input type="file" id="import-bookmarks-file" accept=".json" style="display: none;">
+            </label>
+          </div>
+        </div>
+        <div id="bookmarks-list" class="bookmarks-list">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
