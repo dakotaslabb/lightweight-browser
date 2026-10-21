@@ -135,6 +135,8 @@ app.get('/proxy', async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Lightweight Browser running at http://localhost:${PORT}`);
 });
+
+module.exports = app;

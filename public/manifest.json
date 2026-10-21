@@ -1,0 +1,9 @@
+{
+  "name": "Light Browser",
+  "short_name": "LightBrowser",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121417",
+  "theme_color": "#1b1e23",
+  "description": "Minimalist web browser with bookmarks"
+}
